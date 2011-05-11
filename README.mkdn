@@ -1,0 +1,54 @@
+HOW-TO BUILD:
+=============
+
+**This short guide assumes you're on Ubuntu 10.10**
+
+Getting the (right) source
+--------------------------
+
+Ensure that you have repo installed. Download and install repo like so:
+
+    $ curl http://android.git.kernel.org/repo > ~/bin/repo
+    
+    $ chmod a+x ~/bin/repo
+
+Now, we create our build directories and pull the right source:
+
+    $ cd ~/android/system/
+    
+    $ repo init -u git://github.com/yuri-wei-cn/android.git -b gingerbread
+    
+    $ repo sync -j16
+
+Extract necessary binaries and proprietary files
+------------------------------------------------
+
+We will need to reuse some proprietary files. The best ROM to obtain these from is a build of CM7-C8600 (05012011 or later). The Tapout ROM can also be used:
+
+    $ cd
+    
+    $ cd ~/android/system/device/huawei/c8600/
+    
+    $ ./extract-files.sh
+
+Building CM7
+-------------
+Once thats done you can start compiling.
+
+Follow the aosp instructions on setting up the build environment. - http://source.android.com/source/download.html
+
+When the environment is setup, we need to grab a copy of Koush's ROM Manager. This is necessary to build CM7.
+
+    $ cd
+    
+    $ ~/android/system/vendor/cyanogen/get-rommanager
+
+Now, we build:
+
+    $ cd ~/android/system
+    
+    $ . build/envsetup.sh && brunch c8600
+
+Installing CM7
+---------------
+If the build was successful, you can now take the update zip found in out/target/product/c8600/ and flash using a custom recovery. Make sure to grab the latest Gapps to complete the experience.
