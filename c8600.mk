@@ -113,6 +113,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.execution-mode=int:jit \
     dalvik.vm.heapsize=24m \
     persist.sys.use_dithering=1 \
+    persist.sys.purgeable_assets=1 \
     ro.compcache.default=18
 
 # Don't put dexfiles in /cache on c8600

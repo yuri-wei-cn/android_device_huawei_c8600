@@ -56,8 +56,6 @@ on boot
     chown radio system /dev/oncrpc/3000003c:cc5478d4
     chown radio system /dev/oncrpc/3000005b:a60286b0
     chown radio system /dev/oncrpc/3000fe00:a82d4624
-    chown radio system /dev/oncrpc/00000000:0
-    chown radio system /dev/oncrpc/3000006b:00010000
     chown radio /dev/smd*
     mkdir /data/local
     chmod 0777 /data/local
@@ -69,9 +67,10 @@ on boot
     # SD card polling
     chown system system /sys/bus/platform/devices/msm_sdcc.1/polling
     chown system system /sys/bus/platform/devices/msm_sdcc.2/polling
+    chown system system /sys/devices/platform/msm_hsusb_periphera/composition
 
     # Enable MASS storage on SDCARD
-    write /sys/devices/platform/usb_mass_storage/lun0/file /dev/block/mmcblk0p1
+    write /sys/devices/platform/mass_storage/lun0/file /dev/block/mmcblk0p1
     write /sys/bus/platform/drivers/msm_sdcc/msm_sdcc.1/polling 1
     write /sys/bus/platform/drivers/msm_sdcc/msm_sdcc.2/polling 1
 
@@ -103,7 +102,11 @@ on boot
 
     # fb0 should not be world writable
     chmod 0667 /dev/graphics/fb0
-
+    
+service rmt_storage /system/bin/rmt_storage /dev/block/mmcblk0p10 /dev/block/mmcblk0p11
+    user root
+    disabled
+    
 on property:init.svc.hcid=running
     write /sys/devices/virtual/bluetooth/hci0/idle_timeout 7000
 
