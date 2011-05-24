@@ -16,6 +16,7 @@
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_small.mk)
 PRODUCT_LOCALES += zh_CN zh_HK zh_TW
+
 # The gps config appropriate for this device
 #$(call inherit-product, device/common/gps/gps_us_supl.mk)
 
@@ -224,12 +225,15 @@ PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 PRODUCT_NAME := generic_c8600
 PRODUCT_DEVICE := c8600
 PRODUCT_MODEL := Huawei C8600
+PRODUCT_LOCALES := zh_CN
 
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.com.google.clientidbase=android-huawei-us \
     ro.com.google.locationfeatures=1 \
     ro.cdma.home.operator.numeric=46003 \
     ro.cdma.home.operator.alpha=中国电信 \
-    ro.config.cdma_subscription=1 \
+    ro.config.cdma_subscription=0 \
+    ril.subscription.types=RUIM,NV \
     ro.cdma.voicemail.number=mine \
-    ro.setupwizard.enable_bypass=1
+    ro.setupwizard.enable_bypass=1 \
+    keyguard.no_require_sim=false

@@ -27,6 +27,11 @@ TARGET_CPU_ABI2 := armeabi
 TARGET_ARCH_VARIANT := armv6j
 
 TARGET_NO_BOOTLOADER := true
+TARGET_NO_KERNEL := false
+TARGET_NO_RECOVERY := false
+TARGET_NO_RADIOIMAGE := true
+
+TARGET_PREBUILT_RECOVERY_KERNEL := device/huawei/c8600/recovery_kernel
 
 # Wifi related defines
 BOARD_WPA_SUPPLICANT_DRIVER := WEXT

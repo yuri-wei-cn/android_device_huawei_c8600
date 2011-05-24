@@ -40,11 +40,8 @@
 
 /******************************************************************************/
 
-#if defined(COPYBIT_C8600)
+#if defined(COPYBIT_MSM7K)
 #define MAX_SCALE_FACTOR    (3)
-#define MAX_DIMENSION       (4096)
-#elif defined(COPYBIT_MSM7K)
-#define MAX_SCALE_FACTOR    (4)
 #define MAX_DIMENSION       (4096)
 #elif defined(COPYBIT_QSD8K)
 #define MAX_SCALE_FACTOR    (8)
@@ -150,16 +147,6 @@ static void set_image(struct mdp_img *img, const struct copybit_image_t *rhs)
         if (img->format == MDP_RGBA_8888) {
             // msm7201A GPU only supports BGRA_8888 destinations
             img->format = MDP_BGRA_8888;
-        }
-    } else {
-        img->memory_id = hnd->fd;
-    }
-#elif defined(COPYBIT_C8600)
-    if (hnd->flags & private_handle_t::PRIV_FLAGS_USES_PMEM) {
-        img->memory_id = hnd->fd;
-        if (img->format == MDP_RGBX_8888) {
-            // C8600 doesn't support RGBX_8888
-            img->format = MDP_RGBA_8888;
         }
     } else {
         img->memory_id = hnd->fd;

@@ -6,9 +6,10 @@ rild.libpath=/system/lib/libril-qc-1.so
 rild.libargs=-d /dev/smd0
 persist.rild.nitz_plmn=
 DEVICE_PROVISIONED=1
-ro.config.hwft_PNN_function=true
-persist.cust.tel.adapt=1
-persist.cust.tel.eons=1
+#ro.config.hwft_PNN_function=true
+#persist.cust.tel.adapt=1
+#persist.cust.tel.eons=1
+mobiledata.interfaces=rmnet0,rmnet1,rmnet2
 
 # Allow or deny tethering.
 ro.tether.denied=false
